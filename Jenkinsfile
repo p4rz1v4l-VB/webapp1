@@ -47,7 +47,7 @@ pipeline {
 
         stage('Run Docker'){
 
-            agent { label 'LocalTomcat' }
+            docker { image 'localhost:5000/varun/tomcat:latest' }
             steps {
                 sh 'pwd'
 
