@@ -48,7 +48,7 @@ pipeline {
         stage('Run Docker'){
 
             agent{
-                docker { image 'localhost:5000/varun/tomcat:latest' }
+                docker { image 'varun/tomcat:latest' }
             }
             steps {
                 sh 'pwd'
