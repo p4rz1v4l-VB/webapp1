@@ -1,6 +1,6 @@
 pipeline {
     
-    agent any
+    agent none
     
     tools{
         maven 'Maven'
@@ -12,6 +12,10 @@ pipeline {
     stages {
         
         stage ('Initialise'){
+
+             agent {
+            label 'built-in'
+            }
             
             steps{
                 sh '''
@@ -23,6 +27,10 @@ pipeline {
         }
         
         stage('Build'){
+
+            agent {
+            label 'built-in'
+            }
             steps{
                 sh 'mvn clean package'
             }
