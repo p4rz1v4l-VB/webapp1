@@ -39,7 +39,7 @@ pipeline {
 
         stage('Run Docker'){
 
-            agent { label 'integration-slave' }
+            agent { label 'LocalTomcat' }
             steps {
                 sh 'pwd'
 
