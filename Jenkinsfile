@@ -47,8 +47,13 @@ pipeline {
 
         stage('Run Docker'){
 
-            agent{
-                 label 'LocalTomcat'
+            node{
+                 docker.withServer('tcp://10.0.0.33:2375'){
+                     docker.image('varun/tomcat:latest').withRun('-p 80:8080'){
+                         sh 'pwd'
+                     }
+
+                 }
             }
             options{skipDefaultCheckout true}
             steps {
