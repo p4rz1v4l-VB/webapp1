@@ -48,7 +48,7 @@ pipeline {
         stage('Run Docker'){
 
             agent{
-                docker { image 'varun/tomcat:latest' }
+                 label 'LocalTomcat'
             }
             options{skipDefaultCheckout true}
             steps {
