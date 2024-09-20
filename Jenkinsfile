@@ -52,7 +52,9 @@ pipeline {
             }
             options{skipDefaultCheckout true}
             steps {
-                sh 'pwd'
+                sh '''pwd
+                /usr/local/tomcat/bin/catalina.sh run
+                '''
 
             }
 
