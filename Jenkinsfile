@@ -50,6 +50,7 @@ pipeline {
             agent{
                 docker { image 'varun/tomcat:latest' }
             }
+            options{skipDefaultCheckout true}
             steps {
                 sh 'pwd'
 
