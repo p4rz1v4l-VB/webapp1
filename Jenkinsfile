@@ -33,8 +33,6 @@ pipeline {
             steps{
 
             sh '''
-            sudo su
-            kali
             docker pull gesellix/trufflehog
             docker run gesellix/trufflehog --json https://github.com/p4rz1v4l-VB/webapp.git > trufflehog
             cat trufflehog
