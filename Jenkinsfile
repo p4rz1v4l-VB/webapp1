@@ -25,6 +25,16 @@ pipeline {
             }
             
         }
+
+        stage('Check Git Secrets'){
+
+            sh '''
+            docker pull gesellix/trufflehog
+            docker run gesellix/trufflehog --json https://github.com/p4rz1v4l-VB/webapp.git > trufflehog
+            cat trufflehog
+            '''
+
+        }
         
         stage('Build'){
 
@@ -36,17 +46,17 @@ pipeline {
             }
         }
 
-        stage('Deploy'){
-            agent {
-            label 'built-in'
-            }
-            steps{
-                sshagent(['Tomcat']){
-                    sh 'scp -o StrictHostKeyChecking=no target/WebApp.war ubuntu@13.232.214.108:/var/lib/tomcat10/webapps/webapp.war'
-                }
+        // stage('Deploy'){
+        //     agent {
+        //     label 'built-in'
+        //     }
+        //     steps{
+        //         sshagent(['Tomcat']){
+        //             sh 'scp -o StrictHostKeyChecking=no target/WebApp.war ubuntu@13.232.214.108:/var/lib/tomcat10/webapps/webapp.war'
+        //         }
 
-            }
-        }
+        //     }
+        // }
         
     }
     
