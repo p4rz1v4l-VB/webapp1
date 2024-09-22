@@ -27,12 +27,17 @@ pipeline {
         }
 
         stage('Check Git Secrets'){
+            agent {
+            label 'built-in'
+            }
+            steps{
 
             sh '''
             docker pull gesellix/trufflehog
             docker run gesellix/trufflehog --json https://github.com/p4rz1v4l-VB/webapp.git > trufflehog
             cat trufflehog
             '''
+            }
 
         }
         
