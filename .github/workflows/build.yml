@@ -35,7 +35,6 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-          setup: false
           languages: java-kotlin
           build-mode: manual
           queries: security-extended
