@@ -23,5 +23,20 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+          setup: false
+          languages: java-kotlin
+          build-mode: manual
+          queries: security-extended
+          
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:java-kotlin"
+
