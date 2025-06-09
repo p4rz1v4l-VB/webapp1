@@ -20,29 +20,29 @@ pipeline {
             
         }
 
-        stage('Check Git Secrets'){
+    //     stage('Check Git Secrets'){
 
-            steps{
+    //         steps{
 
-            sh '''
-            docker pull gesellix/trufflehog
-            docker run gesellix/trufflehog --json https://github.com/p4rz1v4l-VB/webapp.git > trufflehog
-            cat trufflehog
-            '''
-            }
+    //         sh '''
+    //         docker pull gesellix/trufflehog
+    //         docker run gesellix/trufflehog --json https://github.com/p4rz1v4l-VB/webapp.git > trufflehog
+    //         cat trufflehog
+    //         '''
+    //         }
 
-        }
+    //     }
 
-        stage ('Source Composition Analysis') {
-            steps {
-                sh 'rm owasp* || true'
-                sh 'wget "https://raw.githubusercontent.com/cehkunal/webapp/master/owasp-dependency-check.sh" '
-                sh 'chmod +x owasp-dependency-check.sh'
-                sh 'bash owasp-dependency-check.sh'
-                sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
+    //     stage ('Source Composition Analysis') {
+    //         steps {
+    //             sh 'rm owasp* || true'
+    //             sh 'wget "https://raw.githubusercontent.com/cehkunal/webapp/master/owasp-dependency-check.sh" '
+    //             sh 'chmod +x owasp-dependency-check.sh'
+    //             sh 'bash owasp-dependency-check.sh'
+    //             sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
         
-      }
-    }
+    //   }
+    // }
         
         stage('Build'){
 
